@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict aWBhPJrx0Xmf6OeP932elXV6TE6QQlbEYnG7f6rwqErphqDNxldkeFBOE5KZnnO
+-- \restrict yJJE79F8UwSwdmgoYWTEQ3aS7JaV6SoLhqz6DF9upncaaj57UM4Q9K2yFNf5Rqo
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -225,7 +225,7 @@ secretsProviderConnection:user	Secrets Provider Connection User	Read-only access
 --
 
 COPY "public"."user" ("id", "email", "firstName", "lastName", "password", "personalizationAnswers", "createdAt", "updatedAt", "settings", "disabled", "mfaEnabled", "mfaSecret", "mfaRecoveryCodes", "lastActiveAt", "roleSlug") FROM stdin;
-fea4af2e-1af7-42db-96f1-90c44eacc092	j_llamas25@yahoo.ca	Jeffrey	Llamas	$2a$10$y4GWXHQgoIyDCVZUWca34.SQggZd7aAVdYkBkI.3GShLdUi2ouIv.	{"version":"v4","personalization_survey_submitted_at":"2026-05-01T00:58:30.154Z","personalization_survey_n8n_version":"2.18.5","automationGoalDevops":["ticketing-systems-integrations","reporting","monitoring-alerting","data-syncing","incident-response"],"companyIndustryExtended":["media-industry","marketing-industry","physical-retail-or-services","manufacturing-industry","real-estate-or-construction","security-industry","telecoms","msp","legal-industry","it-industry","healthcare","government","finance-insurance-industry"],"companySize":"<20","companyType":"other","role":"devops","reportedSource":"youtube"}	2026-05-01 00:21:10.313+00	2026-05-03 20:14:42.415+00	{"userActivated":false,"easyAIWorkflowOnboarded":true}	f	f	U2FsdGVkX18+wqQTjx0dBJKa5m0DsQ0irsvOoUdPCzY1vAhiD9owleubPtHEtEvOgFjCvRx4dXAPeOsx37aQOg==	U2FsdGVkX1+Hz+3XQvM0m3xXrJPjIMJwdvSJl1Ff2OZVtmlIRaciZezqs1b9whs8vBUPoa1wiIBu5qfZcgr2oA==,U2FsdGVkX1+XZaoyoeA/HhdzCPC0xMzGst3THsHl8QjLnz61Eyk4NNh0Yi0zpkB00JqC6IEzE3jTnaMxSrvYuA==,U2FsdGVkX18XaG+uWRWV/P3N+1hcCQMpDhkGjBsxt+Bady35/V9jA8zwn4RY6G+8NoJ3s/T55SRENijGNAIjCQ==,U2FsdGVkX19pzOiulR3PhyW+3EoGPRbD1BHWIDqqCUadrFfTw8G44bqZgCJ8Op+Wc1qqbgalbdYdlmodDCSCzA==,U2FsdGVkX19CWm9efkWIC9FXYz8jrHa8JX5twWdxfRsArcuEKmypEoRsFl7R1HLTof+vVM53pmdTvA+ezwyYiQ==,U2FsdGVkX19kBtsjz4rsfdhve6duC/4KUySts1krgZHaov5mPHmL4VxK9AwQOxzXKV97rjRyNLuuyCgT9A76Hg==,U2FsdGVkX194/NesQMEg1njWZUGdGuN8sWitm9J/3rT2HwF+BHxBYGdtsm4dcyG4tn+QUNWqnNdu7hXY/Fuo/w==,U2FsdGVkX18zd/fq7860GQMnzKnBh1317V8kXase78O3BmdOSOo2TC0UhnmOQ50A6FNvzKjPEJgFox6DfXv2jg==,U2FsdGVkX197wdvDyow2U3YMQACEC1XAESa6xosUx7iVSkspxpX87i4dZcgghF6S+LbgEDo5LilimOrfK12eug==,U2FsdGVkX1/CexUCJfNQAnwxZEsJWQyP/aC3Cy8OFFoYd3Uin1/6Y/J+MJ5+1QYswaw31u8iDH/A6VYnUkpexg==	2026-05-03	global:owner
+fea4af2e-1af7-42db-96f1-90c44eacc092	j_llamas25@yahoo.ca	Jeffrey	Llamas	$2a$10$y4GWXHQgoIyDCVZUWca34.SQggZd7aAVdYkBkI.3GShLdUi2ouIv.	{"version":"v4","personalization_survey_submitted_at":"2026-05-01T00:58:30.154Z","personalization_survey_n8n_version":"2.18.5","automationGoalDevops":["ticketing-systems-integrations","reporting","monitoring-alerting","data-syncing","incident-response"],"companyIndustryExtended":["media-industry","marketing-industry","physical-retail-or-services","manufacturing-industry","real-estate-or-construction","security-industry","telecoms","msp","legal-industry","it-industry","healthcare","government","finance-insurance-industry"],"companySize":"<20","companyType":"other","role":"devops","reportedSource":"youtube"}	2026-05-01 00:21:10.313+00	2026-05-04 23:02:26.703+00	{"userActivated":false,"easyAIWorkflowOnboarded":true}	f	f	U2FsdGVkX18+wqQTjx0dBJKa5m0DsQ0irsvOoUdPCzY1vAhiD9owleubPtHEtEvOgFjCvRx4dXAPeOsx37aQOg==	U2FsdGVkX1+Hz+3XQvM0m3xXrJPjIMJwdvSJl1Ff2OZVtmlIRaciZezqs1b9whs8vBUPoa1wiIBu5qfZcgr2oA==,U2FsdGVkX1+XZaoyoeA/HhdzCPC0xMzGst3THsHl8QjLnz61Eyk4NNh0Yi0zpkB00JqC6IEzE3jTnaMxSrvYuA==,U2FsdGVkX18XaG+uWRWV/P3N+1hcCQMpDhkGjBsxt+Bady35/V9jA8zwn4RY6G+8NoJ3s/T55SRENijGNAIjCQ==,U2FsdGVkX19pzOiulR3PhyW+3EoGPRbD1BHWIDqqCUadrFfTw8G44bqZgCJ8Op+Wc1qqbgalbdYdlmodDCSCzA==,U2FsdGVkX19CWm9efkWIC9FXYz8jrHa8JX5twWdxfRsArcuEKmypEoRsFl7R1HLTof+vVM53pmdTvA+ezwyYiQ==,U2FsdGVkX19kBtsjz4rsfdhve6duC/4KUySts1krgZHaov5mPHmL4VxK9AwQOxzXKV97rjRyNLuuyCgT9A76Hg==,U2FsdGVkX194/NesQMEg1njWZUGdGuN8sWitm9J/3rT2HwF+BHxBYGdtsm4dcyG4tn+QUNWqnNdu7hXY/Fuo/w==,U2FsdGVkX18zd/fq7860GQMnzKnBh1317V8kXase78O3BmdOSOo2TC0UhnmOQ50A6FNvzKjPEJgFox6DfXv2jg==,U2FsdGVkX197wdvDyow2U3YMQACEC1XAESa6xosUx7iVSkspxpX87i4dZcgghF6S+LbgEDo5LilimOrfK12eug==,U2FsdGVkX1/CexUCJfNQAnwxZEsJWQyP/aC3Cy8OFFoYd3Uin1/6Y/J+MJ5+1QYswaw31u8iDH/A6VYnUkpexg==	2026-05-04	global:owner
 \.
 
 
@@ -2126,6 +2126,6 @@ SELECT pg_catalog.setval('"public"."workflow_statistics_id_seq"', 34, true);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict aWBhPJrx0Xmf6OeP932elXV6TE6QQlbEYnG7f6rwqErphqDNxldkeFBOE5KZnnO
+-- \unrestrict yJJE79F8UwSwdmgoYWTEQ3aS7JaV6SoLhqz6DF9upncaaj57UM4Q9K2yFNf5Rqo
 
 RESET ALL;
