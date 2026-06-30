@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict WBIN6joUIyvd2xg5ylmfmEYWDajBrpA57tOr6RQPuy32GCfiuyJQpPrL7ou37o2
+-- \restrict bxQQrydordpMMeWWS7ZFHd5Xbajw9egym7KOaJxBhr0TSBCymEuvHMeS9dJwb6L
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -33,7 +33,7 @@ COPY "auth"."audit_log_entries" ("instance_id", "id", "payload", "created_at", "
 -- Data for Name: custom_oauth_providers; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
-COPY "auth"."custom_oauth_providers" ("id", "provider_type", "identifier", "name", "client_id", "client_secret", "acceptable_client_ids", "scopes", "pkce_enabled", "attribute_mapping", "authorization_params", "enabled", "email_optional", "issuer", "discovery_url", "skip_nonce_check", "cached_discovery", "discovery_cached_at", "authorization_url", "token_url", "userinfo_url", "jwks_uri", "created_at", "updated_at") FROM stdin;
+COPY "auth"."custom_oauth_providers" ("id", "provider_type", "identifier", "name", "client_id", "client_secret", "acceptable_client_ids", "scopes", "pkce_enabled", "attribute_mapping", "authorization_params", "enabled", "email_optional", "issuer", "discovery_url", "skip_nonce_check", "cached_discovery", "discovery_cached_at", "authorization_url", "token_url", "userinfo_url", "jwks_uri", "created_at", "updated_at", "custom_claims_allowlist") FROM stdin;
 \.
 
 
@@ -2107,6 +2107,6 @@ SELECT pg_catalog.setval('"public"."workflow_statistics_id_seq"', 36, true);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict WBIN6joUIyvd2xg5ylmfmEYWDajBrpA57tOr6RQPuy32GCfiuyJQpPrL7ou37o2
+-- \unrestrict bxQQrydordpMMeWWS7ZFHd5Xbajw9egym7KOaJxBhr0TSBCymEuvHMeS9dJwb6L
 
 RESET ALL;
