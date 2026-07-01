@@ -6,7 +6,7 @@ SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '"public"', false);
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -1575,31 +1575,31 @@ CREATE TABLE IF NOT EXISTS "public"."workflows_tags" (
 ALTER TABLE "public"."workflows_tags" OWNER TO "postgres";
 
 
-ALTER TABLE ONLY "public"."auth_provider_sync_history" ALTER COLUMN "id" SET DEFAULT "nextval"('"auth_provider_sync_history_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."auth_provider_sync_history" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."auth_provider_sync_history_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."execution_annotations" ALTER COLUMN "id" SET DEFAULT "nextval"('"execution_annotations_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."execution_annotations" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."execution_annotations_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."execution_entity" ALTER COLUMN "id" SET DEFAULT "nextval"('"execution_entity_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."execution_entity" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."execution_entity_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."execution_metadata" ALTER COLUMN "id" SET DEFAULT "nextval"('"execution_metadata_temp_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."execution_metadata" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."execution_metadata_temp_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."instance_version_history" ALTER COLUMN "id" SET DEFAULT "nextval"('"instance_version_history_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."instance_version_history" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."instance_version_history_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."migrations" ALTER COLUMN "id" SET DEFAULT "nextval"('"migrations_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."migrations" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."migrations_id_seq"'::"regclass");
 
 
 
-ALTER TABLE ONLY "public"."workflow_statistics" ALTER COLUMN "id" SET DEFAULT "nextval"('"workflow_statistics_id_seq"'::"regclass");
+ALTER TABLE ONLY "public"."workflow_statistics" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."workflow_statistics_id_seq"'::"regclass");
 
 
 
@@ -2321,482 +2321,482 @@ CREATE UNIQUE INDEX "variables_project_key_unique" ON "public"."variables" USING
 
 
 
-CREATE OR REPLACE TRIGGER "workflow_version_increment" BEFORE UPDATE ON "public"."workflow_entity" FOR EACH ROW EXECUTE FUNCTION "increment_workflow_version"();
+CREATE OR REPLACE TRIGGER "workflow_version_increment" BEFORE UPDATE ON "public"."workflow_entity" FOR EACH ROW EXECUTE FUNCTION "public"."increment_workflow_version"();
 
 
 
 ALTER TABLE ONLY "public"."workflow_builder_session"
-    ADD CONSTRAINT "FK_00290cdeee4d4d7db84709be936" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_00290cdeee4d4d7db84709be936" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."processed_data"
-    ADD CONSTRAINT "FK_06a69a7032c97a763c2c7599464" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_06a69a7032c97a763c2c7599464" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_entity"
-    ADD CONSTRAINT "FK_08d6c67b7f722b0039d9d5ed620" FOREIGN KEY ("activeVersionId") REFERENCES "workflow_history"("versionId") ON DELETE RESTRICT;
+    ADD CONSTRAINT "FK_08d6c67b7f722b0039d9d5ed620" FOREIGN KEY ("activeVersionId") REFERENCES "public"."workflow_history"("versionId") ON DELETE RESTRICT;
 
 
 
 ALTER TABLE ONLY "public"."project_secrets_provider_access"
-    ADD CONSTRAINT "FK_18e5c27d2524b1638b292904e48" FOREIGN KEY ("secretsProviderConnectionId") REFERENCES "secrets_provider_connection"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_18e5c27d2524b1638b292904e48" FOREIGN KEY ("secretsProviderConnectionId") REFERENCES "public"."secrets_provider_connection"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."insights_metadata"
-    ADD CONSTRAINT "FK_1d8ab99d5861c9388d2dc1cf733" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_1d8ab99d5861c9388d2dc1cf733" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."user_favorites"
-    ADD CONSTRAINT "FK_1dd5c393ad0517be3c31a7af836" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_1dd5c393ad0517be3c31a7af836" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_history"
-    ADD CONSTRAINT "FK_1e31657f5fe46816c34be7c1b4b" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_1e31657f5fe46816c34be7c1b4b" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."instance_ai_messages"
-    ADD CONSTRAINT "FK_1eeb64cb9d66a927988de759e6e" FOREIGN KEY ("threadId") REFERENCES "instance_ai_threads"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_1eeb64cb9d66a927988de759e6e" FOREIGN KEY ("threadId") REFERENCES "public"."instance_ai_threads"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_1f4998c8a7dec9e00a9ab15550e" FOREIGN KEY ("revisionOfMessageId") REFERENCES "chat_hub_messages"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_1f4998c8a7dec9e00a9ab15550e" FOREIGN KEY ("revisionOfMessageId") REFERENCES "public"."chat_hub_messages"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_user_consents"
-    ADD CONSTRAINT "FK_21e6c3c2d78a097478fae6aaefa" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_21e6c3c2d78a097478fae6aaefa" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."insights_metadata"
-    ADD CONSTRAINT "FK_2375a1eda085adb16b24615b69c" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_2375a1eda085adb16b24615b69c" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_25c9736e7f769f3a005eef4b372" FOREIGN KEY ("retryOfMessageId") REFERENCES "chat_hub_messages"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_25c9736e7f769f3a005eef4b372" FOREIGN KEY ("retryOfMessageId") REFERENCES "public"."chat_hub_messages"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_agent_tools"
-    ADD CONSTRAINT "FK_2b53d796b3dbae91b1a9553c048" FOREIGN KEY ("agentId") REFERENCES "chat_hub_agents"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_2b53d796b3dbae91b1a9553c048" FOREIGN KEY ("agentId") REFERENCES "public"."chat_hub_agents"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."instance_ai_run_snapshots"
-    ADD CONSTRAINT "FK_2f63fa21d09d7918f347ddbdf70" FOREIGN KEY ("threadId") REFERENCES "instance_ai_threads"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_2f63fa21d09d7918f347ddbdf70" FOREIGN KEY ("threadId") REFERENCES "public"."instance_ai_threads"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."execution_metadata"
-    ADD CONSTRAINT "FK_31d0b4c93fb85ced26f6005cda3" FOREIGN KEY ("executionId") REFERENCES "execution_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_31d0b4c93fb85ced26f6005cda3" FOREIGN KEY ("executionId") REFERENCES "public"."execution_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."instance_ai_observational_memory"
-    ADD CONSTRAINT "FK_34018c303885cd37093458e6409" FOREIGN KEY ("threadId") REFERENCES "instance_ai_threads"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_34018c303885cd37093458e6409" FOREIGN KEY ("threadId") REFERENCES "public"."instance_ai_threads"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."role_mapping_rule_project"
-    ADD CONSTRAINT "FK_35a78869286c65d9330d02b88f5" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_35a78869286c65d9330d02b88f5" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."ai_builder_temporary_workflow"
-    ADD CONSTRAINT "FK_39b07732e819fb561d74c38763f" FOREIGN KEY ("threadId") REFERENCES "instance_ai_threads"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_39b07732e819fb561d74c38763f" FOREIGN KEY ("threadId") REFERENCES "public"."instance_ai_threads"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."shared_credentials"
-    ADD CONSTRAINT "FK_416f66fc846c7c442970c094ccf" FOREIGN KEY ("credentialsId") REFERENCES "credentials_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_416f66fc846c7c442970c094ccf" FOREIGN KEY ("credentialsId") REFERENCES "public"."credentials_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."variables"
-    ADD CONSTRAINT "FK_42f6c766f9f9d2edcc15bdd6e9b" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_42f6c766f9f9d2edcc15bdd6e9b" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_agent_tools"
-    ADD CONSTRAINT "FK_43e70f04c53344f82483d0570f6" FOREIGN KEY ("toolId") REFERENCES "chat_hub_tools"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_43e70f04c53344f82483d0570f6" FOREIGN KEY ("toolId") REFERENCES "public"."chat_hub_tools"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_agents"
-    ADD CONSTRAINT "FK_441ba2caba11e077ce3fbfa2cd8" FOREIGN KEY ("ownerId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_441ba2caba11e077ce3fbfa2cd8" FOREIGN KEY ("ownerId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_published_version"
-    ADD CONSTRAINT "FK_5c76fb7ee939fe2530374d3f75a" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE RESTRICT;
+    ADD CONSTRAINT "FK_5c76fb7ee939fe2530374d3f75a" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE RESTRICT;
 
 
 
 ALTER TABLE ONLY "public"."credential_dependency"
-    ADD CONSTRAINT "FK_5ec8e8c8d3539f3696cf73b43bf" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_5ec8e8c8d3539f3696cf73b43bf" FOREIGN KEY ("credentialId") REFERENCES "public"."credentials_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."project_relation"
-    ADD CONSTRAINT "FK_5f0643f6717905a05164090dde7" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_5f0643f6717905a05164090dde7" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."project_relation"
-    ADD CONSTRAINT "FK_61448d56d61802b5dfde5cdb002" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_61448d56d61802b5dfde5cdb002" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."insights_by_period"
-    ADD CONSTRAINT "FK_6414cfed98daabbfdd61a1cfbc0" FOREIGN KEY ("metaId") REFERENCES "insights_metadata"("metaId") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_6414cfed98daabbfdd61a1cfbc0" FOREIGN KEY ("metaId") REFERENCES "public"."insights_metadata"("metaId") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_authorization_codes"
-    ADD CONSTRAINT "FK_64d965bd072ea24fb6da55468cd" FOREIGN KEY ("clientId") REFERENCES "oauth_clients"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_64d965bd072ea24fb6da55468cd" FOREIGN KEY ("clientId") REFERENCES "public"."oauth_clients"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_session_tools"
-    ADD CONSTRAINT "FK_6596a328affd8d4967ffb303eee" FOREIGN KEY ("toolId") REFERENCES "chat_hub_tools"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_6596a328affd8d4967ffb303eee" FOREIGN KEY ("toolId") REFERENCES "public"."chat_hub_tools"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_6afb260449dd7a9b85355d4e0c9" FOREIGN KEY ("executionId") REFERENCES "execution_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_6afb260449dd7a9b85355d4e0c9" FOREIGN KEY ("executionId") REFERENCES "public"."execution_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."insights_raw"
-    ADD CONSTRAINT "FK_6e2e33741adef2a7c5d66befa4e" FOREIGN KEY ("metaId") REFERENCES "insights_metadata"("metaId") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_6e2e33741adef2a7c5d66befa4e" FOREIGN KEY ("metaId") REFERENCES "public"."insights_metadata"("metaId") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_publish_history"
-    ADD CONSTRAINT "FK_6eab5bd9eedabe9c54bd879fc40" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_6eab5bd9eedabe9c54bd879fc40" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."dynamic_credential_user_entry"
-    ADD CONSTRAINT "FK_6edec973a6450990977bb854c38" FOREIGN KEY ("resolverId") REFERENCES "dynamic_credential_resolver"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_6edec973a6450990977bb854c38" FOREIGN KEY ("resolverId") REFERENCES "public"."dynamic_credential_resolver"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_access_tokens"
-    ADD CONSTRAINT "FK_7234a36d8e49a1fa85095328845" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_7234a36d8e49a1fa85095328845" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."installed_nodes"
-    ADD CONSTRAINT "FK_73f857fc5dce682cef8a99c11dbddbc969618951" FOREIGN KEY ("package") REFERENCES "installed_packages"("packageName") ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_73f857fc5dce682cef8a99c11dbddbc969618951" FOREIGN KEY ("package") REFERENCES "public"."installed_packages"("packageName") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_access_tokens"
-    ADD CONSTRAINT "FK_78b26968132b7e5e45b75876481" FOREIGN KEY ("clientId") REFERENCES "oauth_clients"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_78b26968132b7e5e45b75876481" FOREIGN KEY ("clientId") REFERENCES "public"."oauth_clients"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_builder_session"
-    ADD CONSTRAINT "FK_7983c618db48f47bf5a4cc1e1e4" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_7983c618db48f47bf5a4cc1e1e4" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_sessions"
-    ADD CONSTRAINT "FK_7bc13b4c7e6afbfaf9be326c189" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_7bc13b4c7e6afbfaf9be326c189" FOREIGN KEY ("credentialId") REFERENCES "public"."credentials_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."folder"
-    ADD CONSTRAINT "FK_804ea52f6729e3940498bd54d78" FOREIGN KEY ("parentFolderId") REFERENCES "folder"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_804ea52f6729e3940498bd54d78" FOREIGN KEY ("parentFolderId") REFERENCES "public"."folder"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."shared_credentials"
-    ADD CONSTRAINT "FK_812c2852270da1247756e77f5a4" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_812c2852270da1247756e77f5a4" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."ai_builder_temporary_workflow"
-    ADD CONSTRAINT "FK_85a87a1ba0f61999fe11dc56325" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_85a87a1ba0f61999fe11dc56325" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."instance_ai_iteration_logs"
-    ADD CONSTRAINT "FK_8bfcc6c51fd3d69b1eae8aebd49" FOREIGN KEY ("threadId") REFERENCES "instance_ai_threads"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_8bfcc6c51fd3d69b1eae8aebd49" FOREIGN KEY ("threadId") REFERENCES "public"."instance_ai_threads"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."trusted_key"
-    ADD CONSTRAINT "FK_8c2938d746943dd8f608d23c891" FOREIGN KEY ("sourceId") REFERENCES "trusted_key_source"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_8c2938d746943dd8f608d23c891" FOREIGN KEY ("sourceId") REFERENCES "public"."trusted_key_source"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."test_case_execution"
-    ADD CONSTRAINT "FK_8e4b4774db42f1e6dda3452b2af" FOREIGN KEY ("testRunId") REFERENCES "test_run"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_8e4b4774db42f1e6dda3452b2af" FOREIGN KEY ("testRunId") REFERENCES "public"."test_run"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."data_table_column"
-    ADD CONSTRAINT "FK_930b6e8faaf88294cef23484160" FOREIGN KEY ("dataTableId") REFERENCES "data_table"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_930b6e8faaf88294cef23484160" FOREIGN KEY ("dataTableId") REFERENCES "public"."data_table"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."dynamic_credential_user_entry"
-    ADD CONSTRAINT "FK_945ba70b342a066d1306b12ccd2" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_945ba70b342a066d1306b12ccd2" FOREIGN KEY ("credentialId") REFERENCES "public"."credentials_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."folder_tag"
-    ADD CONSTRAINT "FK_94a60854e06f2897b2e0d39edba" FOREIGN KEY ("folderId") REFERENCES "folder"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_94a60854e06f2897b2e0d39edba" FOREIGN KEY ("folderId") REFERENCES "public"."folder"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."execution_annotations"
-    ADD CONSTRAINT "FK_97f863fa83c4786f19565084960" FOREIGN KEY ("executionId") REFERENCES "execution_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_97f863fa83c4786f19565084960" FOREIGN KEY ("executionId") REFERENCES "public"."execution_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_agents"
-    ADD CONSTRAINT "FK_9c61ad497dcbae499c96a6a78ba" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_9c61ad497dcbae499c96a6a78ba" FOREIGN KEY ("credentialId") REFERENCES "public"."credentials_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_sessions"
-    ADD CONSTRAINT "FK_9f9293d9f552496c40e0d1a8f80" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_9f9293d9f552496c40e0d1a8f80" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."execution_annotation_tags"
-    ADD CONSTRAINT "FK_a3697779b366e131b2bbdae2976" FOREIGN KEY ("tagId") REFERENCES "annotation_tag_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a3697779b366e131b2bbdae2976" FOREIGN KEY ("tagId") REFERENCES "public"."annotation_tag_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."dynamic_credential_user_entry"
-    ADD CONSTRAINT "FK_a36dc616fabc3f736bb82410a22" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a36dc616fabc3f736bb82410a22" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."shared_workflow"
-    ADD CONSTRAINT "FK_a45ea5f27bcfdc21af9b4188560" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a45ea5f27bcfdc21af9b4188560" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_dependency"
-    ADD CONSTRAINT "FK_a4ff2d9b9628ea988fa9e7d0bf8" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a4ff2d9b9628ea988fa9e7d0bf8" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_user_consents"
-    ADD CONSTRAINT "FK_a651acea2f6c97f8c4514935486" FOREIGN KEY ("clientId") REFERENCES "oauth_clients"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a651acea2f6c97f8c4514935486" FOREIGN KEY ("clientId") REFERENCES "public"."oauth_clients"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_refresh_tokens"
-    ADD CONSTRAINT "FK_a699f3ed9fd0c1b19bc2608ac53" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a699f3ed9fd0c1b19bc2608ac53" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."dynamic_credential_entry"
-    ADD CONSTRAINT "FK_a6d1dd080958304a47a02952aab" FOREIGN KEY ("credential_id") REFERENCES "credentials_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a6d1dd080958304a47a02952aab" FOREIGN KEY ("credential_id") REFERENCES "public"."credentials_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."folder"
-    ADD CONSTRAINT "FK_a8260b0b36939c6247f385b8221" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_a8260b0b36939c6247f385b8221" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."oauth_authorization_codes"
-    ADD CONSTRAINT "FK_aa8d3560484944c19bdf79ffa16" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_aa8d3560484944c19bdf79ffa16" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_acf8926098f063cdbbad8497fd1" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_acf8926098f063cdbbad8497fd1" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."oauth_refresh_tokens"
-    ADD CONSTRAINT "FK_b388696ce4d8be7ffbe8d3e4b69" FOREIGN KEY ("clientId") REFERENCES "oauth_clients"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_b388696ce4d8be7ffbe8d3e4b69" FOREIGN KEY ("clientId") REFERENCES "public"."oauth_clients"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_publish_history"
-    ADD CONSTRAINT "FK_b4cfbc7556d07f36ca177f5e473" FOREIGN KEY ("versionId") REFERENCES "workflow_history"("versionId") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_b4cfbc7556d07f36ca177f5e473" FOREIGN KEY ("versionId") REFERENCES "public"."workflow_history"("versionId") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_tools"
-    ADD CONSTRAINT "FK_b8030b47af9213f1fd15450fb7f" FOREIGN KEY ("ownerId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_b8030b47af9213f1fd15450fb7f" FOREIGN KEY ("ownerId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."role_mapping_rule"
-    ADD CONSTRAINT "FK_bb66e404c35996b0d6946177501" FOREIGN KEY ("role") REFERENCES "role"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_bb66e404c35996b0d6946177501" FOREIGN KEY ("role") REFERENCES "public"."role"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."project_secrets_provider_access"
-    ADD CONSTRAINT "FK_bd264b81209355b543878deedb1" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_bd264b81209355b543878deedb1" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_publish_history"
-    ADD CONSTRAINT "FK_c01316f8c2d7101ec4fa9809267" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_c01316f8c2d7101ec4fa9809267" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."execution_annotation_tags"
-    ADD CONSTRAINT "FK_c1519757391996eb06064f0e7c8" FOREIGN KEY ("annotationId") REFERENCES "execution_annotations"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_c1519757391996eb06064f0e7c8" FOREIGN KEY ("annotationId") REFERENCES "public"."execution_annotations"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."data_table"
-    ADD CONSTRAINT "FK_c2a794257dee48af7c9abf681de" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_c2a794257dee48af7c9abf681de" FOREIGN KEY ("projectId") REFERENCES "public"."project"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."project_relation"
-    ADD CONSTRAINT "FK_c6b99592dc96b0d836d7a21db91" FOREIGN KEY ("role") REFERENCES "role"("slug");
+    ADD CONSTRAINT "FK_c6b99592dc96b0d836d7a21db91" FOREIGN KEY ("role") REFERENCES "public"."role"("slug");
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_chat_hub_messages_agentId" FOREIGN KEY ("agentId") REFERENCES "chat_hub_agents"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_chat_hub_messages_agentId" FOREIGN KEY ("agentId") REFERENCES "public"."chat_hub_agents"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_sessions"
-    ADD CONSTRAINT "FK_chat_hub_sessions_agentId" FOREIGN KEY ("agentId") REFERENCES "chat_hub_agents"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_chat_hub_sessions_agentId" FOREIGN KEY ("agentId") REFERENCES "public"."chat_hub_agents"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."dynamic_credential_entry"
-    ADD CONSTRAINT "FK_d61a12235d268a49af6a3c09c13" FOREIGN KEY ("resolver_id") REFERENCES "dynamic_credential_resolver"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_d61a12235d268a49af6a3c09c13" FOREIGN KEY ("resolver_id") REFERENCES "public"."dynamic_credential_resolver"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."test_run"
-    ADD CONSTRAINT "FK_d6870d3b6e4c185d33926f423c8" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_d6870d3b6e4c185d33926f423c8" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."shared_workflow"
-    ADD CONSTRAINT "FK_daa206a04983d47d0a9c34649ce" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_daa206a04983d47d0a9c34649ce" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."folder_tag"
-    ADD CONSTRAINT "FK_dc88164176283de80af47621746" FOREIGN KEY ("tagId") REFERENCES "tag_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_dc88164176283de80af47621746" FOREIGN KEY ("tagId") REFERENCES "public"."tag_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."role_mapping_rule_project"
-    ADD CONSTRAINT "FK_dd7ce4dfa09e95b36a626bd9de3" FOREIGN KEY ("roleMappingRuleId") REFERENCES "role_mapping_rule"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_dd7ce4dfa09e95b36a626bd9de3" FOREIGN KEY ("roleMappingRuleId") REFERENCES "public"."role_mapping_rule"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_published_version"
-    ADD CONSTRAINT "FK_df3428a541b802d6a63ac56e330" FOREIGN KEY ("publishedVersionId") REFERENCES "workflow_history"("versionId") ON DELETE RESTRICT;
+    ADD CONSTRAINT "FK_df3428a541b802d6a63ac56e330" FOREIGN KEY ("publishedVersionId") REFERENCES "public"."workflow_history"("versionId") ON DELETE RESTRICT;
 
 
 
 ALTER TABLE ONLY "public"."user_api_keys"
-    ADD CONSTRAINT "FK_e131705cbbc8fb589889b02d457" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_e131705cbbc8fb589889b02d457" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_e22538eb50a71a17954cd7e076c" FOREIGN KEY ("sessionId") REFERENCES "chat_hub_sessions"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_e22538eb50a71a17954cd7e076c" FOREIGN KEY ("sessionId") REFERENCES "public"."chat_hub_sessions"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."test_case_execution"
-    ADD CONSTRAINT "FK_e48965fac35d0f5b9e7f51d8c44" FOREIGN KEY ("executionId") REFERENCES "execution_entity"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "FK_e48965fac35d0f5b9e7f51d8c44" FOREIGN KEY ("executionId") REFERENCES "public"."execution_entity"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_messages"
-    ADD CONSTRAINT "FK_e5d1fa722c5a8d38ac204746662" FOREIGN KEY ("previousMessageId") REFERENCES "chat_hub_messages"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_e5d1fa722c5a8d38ac204746662" FOREIGN KEY ("previousMessageId") REFERENCES "public"."chat_hub_messages"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_session_tools"
-    ADD CONSTRAINT "FK_e649bf1295f4ed8d4299ed290f9" FOREIGN KEY ("sessionId") REFERENCES "chat_hub_sessions"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_e649bf1295f4ed8d4299ed290f9" FOREIGN KEY ("sessionId") REFERENCES "public"."chat_hub_sessions"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."chat_hub_sessions"
-    ADD CONSTRAINT "FK_e9ecf8ede7d989fcd18790fe36a" FOREIGN KEY ("ownerId") REFERENCES "user"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_e9ecf8ede7d989fcd18790fe36a" FOREIGN KEY ("ownerId") REFERENCES "public"."user"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."user"
-    ADD CONSTRAINT "FK_eaea92ee7bfb9c1b6cd01505d56" FOREIGN KEY ("roleSlug") REFERENCES "role"("slug");
+    ADD CONSTRAINT "FK_eaea92ee7bfb9c1b6cd01505d56" FOREIGN KEY ("roleSlug") REFERENCES "public"."role"("slug");
 
 
 
 ALTER TABLE ONLY "public"."role_scope"
-    ADD CONSTRAINT "FK_role" FOREIGN KEY ("roleSlug") REFERENCES "role"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_role" FOREIGN KEY ("roleSlug") REFERENCES "public"."role"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."role_scope"
-    ADD CONSTRAINT "FK_scope" FOREIGN KEY ("scopeSlug") REFERENCES "scope"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_scope" FOREIGN KEY ("scopeSlug") REFERENCES "public"."scope"("slug") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."auth_identity"
-    ADD CONSTRAINT "auth_identity_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id");
+    ADD CONSTRAINT "auth_identity_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."user"("id");
 
 
 
 ALTER TABLE ONLY "public"."credentials_entity"
-    ADD CONSTRAINT "credentials_entity_resolverId_foreign" FOREIGN KEY ("resolverId") REFERENCES "dynamic_credential_resolver"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "credentials_entity_resolverId_foreign" FOREIGN KEY ("resolverId") REFERENCES "public"."dynamic_credential_resolver"("id") ON DELETE SET NULL;
 
 
 
 ALTER TABLE ONLY "public"."execution_data"
-    ADD CONSTRAINT "execution_data_fk" FOREIGN KEY ("executionId") REFERENCES "execution_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "execution_data_fk" FOREIGN KEY ("executionId") REFERENCES "public"."execution_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."execution_entity"
-    ADD CONSTRAINT "fk_execution_entity_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "fk_execution_entity_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."webhook_entity"
-    ADD CONSTRAINT "fk_webhook_entity_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "fk_webhook_entity_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflow_entity"
-    ADD CONSTRAINT "fk_workflow_parent_folder" FOREIGN KEY ("parentFolderId") REFERENCES "folder"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "fk_workflow_parent_folder" FOREIGN KEY ("parentFolderId") REFERENCES "public"."folder"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflows_tags"
-    ADD CONSTRAINT "fk_workflows_tags_tag_id" FOREIGN KEY ("tagId") REFERENCES "tag_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "fk_workflows_tags_tag_id" FOREIGN KEY ("tagId") REFERENCES "public"."tag_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."workflows_tags"
-    ADD CONSTRAINT "fk_workflows_tags_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE;
+    ADD CONSTRAINT "fk_workflows_tags_workflow_id" FOREIGN KEY ("workflowId") REFERENCES "public"."workflow_entity"("id") ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY "public"."project"
-    ADD CONSTRAINT "projects_creatorId_foreign" FOREIGN KEY ("creatorId") REFERENCES "user"("id") ON DELETE SET NULL;
+    ADD CONSTRAINT "projects_creatorId_foreign" FOREIGN KEY ("creatorId") REFERENCES "public"."user"("id") ON DELETE SET NULL;
 
 
 
